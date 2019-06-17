@@ -14,6 +14,6 @@ interface OpenWeatherMapDao {
     fun insert(item: Weather)
 
     @Query("SELECT * FROM WEATHER WHERE cityId=:cityId")
-    fun get(cityId: Int): Single<List<Weather>>
+    fun allBy(cityId: Int): Single<List<Weather>>
 
 }
