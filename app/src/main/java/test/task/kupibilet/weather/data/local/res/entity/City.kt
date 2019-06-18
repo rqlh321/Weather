@@ -8,8 +8,11 @@ data class City(
     @SerializedName("coordinates") val coordinates: Coordinates
 
 ) {
+
+    fun id() = country + name
+
     data class Coordinates(
         @SerializedName("lat") val lat: Double,
-        @SerializedName("lot") val lot: Double
+        @SerializedName("lon") val lon: Double
     )
 }
