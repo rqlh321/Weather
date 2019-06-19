@@ -8,7 +8,7 @@ import dagger.android.DaggerApplication
 import dagger.android.support.AndroidSupportInjectionModule
 import test.task.kupibilet.weather.di.module.ContextModule
 import test.task.kupibilet.weather.di.module.DataAccessModule
-import test.task.kupibilet.weather.di.module.MainHostModule
+import test.task.kupibilet.weather.di.module.business.CitiesModule
 import test.task.kupibilet.weather.di.module.UseCaseModule
 import javax.inject.Singleton
 
@@ -20,7 +20,7 @@ import javax.inject.Singleton
         UseCaseModule::class,
         DataAccessModule::class,
 
-        MainHostModule::class
+        CitiesModule::class
     ]
 )
 interface AppComponent : AndroidInjector<DaggerApplication> {

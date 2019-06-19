@@ -44,6 +44,7 @@ class WeatherUseCaseImpl @Inject constructor(
             }
     }
 
+    private fun Long.isOld() = System.currentTimeMillis() - this > DATA_TIMEOUT_IN_MINUTES * 60 * 1000
+
 }
 
-private fun Long.isOld() = System.currentTimeMillis() - this > DATA_TIMEOUT_IN_MINUTES * 60 * 1000
