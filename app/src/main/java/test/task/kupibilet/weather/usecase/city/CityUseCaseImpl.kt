@@ -1,6 +1,8 @@
 package test.task.kupibilet.weather.usecase.city
 
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import test.task.kupibilet.weather.R
 import test.task.kupibilet.weather.data.Repo
 import test.task.kupibilet.weather.data.local.res.entity.City
@@ -12,6 +14,8 @@ class CityUseCaseImpl @Inject constructor(
 
     override fun cities(): Single<List<City>> {
         return Single.just(repo.local.res.raw(R.raw.cities, Array<City>::class).toList())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
 }

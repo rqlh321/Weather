@@ -7,12 +7,16 @@ import test.task.kupibilet.weather.business.MainActivity
 import test.task.kupibilet.weather.business.cities.CitiesContract
 import test.task.kupibilet.weather.business.cities.CitiesFragment
 import test.task.kupibilet.weather.business.cities.CitiesPresenter
+import test.task.kupibilet.weather.usecase.city.CityUseCase
+import test.task.kupibilet.weather.usecase.city.CityUseCaseImpl
+import javax.inject.Singleton
 
 @Module
 abstract class CitiesModule {
 
-    @ContributesAndroidInjector
-    protected abstract fun provideMainActivity(): MainActivity
+    @Binds
+    @Singleton
+    protected abstract fun provideCityUsecase(impl: CityUseCaseImpl): CityUseCase
 
     @ContributesAndroidInjector
     protected abstract fun provideCitiesFragment(): CitiesFragment

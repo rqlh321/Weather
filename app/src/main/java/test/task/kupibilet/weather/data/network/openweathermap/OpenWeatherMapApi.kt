@@ -8,7 +8,7 @@ import test.task.kupibilet.weather.data.network.openweathermap.pojo.OpenWeatherR
 interface OpenWeatherMapApi {
 
 
-    @GET("forecast?units=metric&cnt=10")
+    @GET("forecast?units=metric&cnt=30")
     fun info(
         @Query("lat") lat: Double,
         @Query("lon") lon: Double

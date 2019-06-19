@@ -1,6 +1,8 @@
 package test.task.kupibilet.weather.usecase.weather
 
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import test.task.kupibilet.weather.BuildConfig.DATA_TIMEOUT_IN_MINUTES
 import test.task.kupibilet.weather.data.Repo
 import test.task.kupibilet.weather.data.local.database.entity.Weather
@@ -27,6 +29,8 @@ class WeatherUseCaseImpl @Inject constructor(
                     }
                 }
             }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     private fun downloadWeather(city: City): Single<List<Weather>> {
