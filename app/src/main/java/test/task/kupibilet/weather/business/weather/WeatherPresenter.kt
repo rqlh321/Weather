@@ -1,6 +1,7 @@
 package test.task.kupibilet.weather.business.weather
 
 import io.reactivex.disposables.CompositeDisposable
+import test.task.kupibilet.weather.data.local.database.entity.Weather
 import test.task.kupibilet.weather.data.local.res.entity.City
 import test.task.kupibilet.weather.usecase.weather.WeatherUseCase
 import javax.inject.Inject
@@ -24,4 +25,7 @@ class WeatherPresenter @Inject constructor(
                 })
         )
     }
+
+    override fun select(weather: Weather) = view.showDescription(weather)
+
 }

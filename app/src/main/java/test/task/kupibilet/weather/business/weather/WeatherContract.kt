@@ -8,8 +8,16 @@ import test.task.kupibilet.weather.data.local.res.entity.City
 interface WeatherContract {
 
     interface Presenter : BasePresenter<View> {
+
         var city: City
+
+        fun select(weather: Weather)
+
     }
 
-    interface View : BaseView<Presenter, List<Weather>>
+    interface View : BaseView<Presenter, List<Weather>>{
+
+        fun showDescription(weather: Weather)
+
+    }
 }

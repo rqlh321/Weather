@@ -1,5 +1,7 @@
 package test.task.kupibilet.weather.data.local.database.entity
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import test.task.kupibilet.weather.R
@@ -15,8 +17,7 @@ data class Weather(
     var description: String = "",
     var timestamp: Long = 0,
     var timestampPreview: String = ""
-) : ListItem {
-
+) : ListItem, Parcelable {
     override fun layout() = R.layout.list_item_weather
 
     @PrimaryKey
@@ -30,7 +31,31 @@ data class Weather(
         CREATE_FORMAT.format(System.currentTimeMillis())
     )
 
+    constructor(source: Parcel) : this(
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readLong(),
+        source.readString()
+    )
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+        writeString(cityId)
+        writeString(title)
+        writeString(description)
+        writeLong(timestamp)
+        writeString(timestampPreview)
+    }
+
     companion object {
         private var CREATE_FORMAT = SimpleDateFormat("HH:mm")
+
+        @JvmField
+        val CREATOR: Parcelable.Creator<Weather> = object : Parcelable.Creator<Weather> {
+            override fun createFromParcel(source: Parcel): Weather = Weather(source)
+            override fun newArray(size: Int): Array<Weather?> = arrayOfNulls(size)
+        }
     }
 }
