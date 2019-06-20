@@ -21,7 +21,7 @@ class WeatherPresenter @Inject constructor(
                 .subscribe({
                     view.putData(it)
                 }, {
-                    it.printStackTrace()
+                    view.error(it.message ?: "")
                 })
         )
     }

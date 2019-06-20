@@ -6,4 +6,6 @@ interface BaseView<Presenter, Data> {
 
     fun putData(data: Data)
 
+    fun error(message: String)
+
 }

@@ -18,7 +18,7 @@ class CitiesPresenter @Inject constructor(
                     {
                         view.putData(it)
                     }, {
-                        it.printStackTrace()
+                        view.error(it.message ?: "")
                     })
         )
 

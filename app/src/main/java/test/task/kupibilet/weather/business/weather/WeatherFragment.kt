@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dagger.android.support.DaggerAppCompatDialogFragment
@@ -64,9 +65,14 @@ class WeatherFragment : DaggerAppCompatDialogFragment(),
     override fun showDescription(weather: Weather) {
         parentFragment?.fragmentManager
             ?.beginTransaction()
-            ?.replace(R.id.main_body,DescriptionFragment.instance(weather))
+            ?.replace(R.id.main_body, DescriptionFragment.instance(weather))
             ?.addToBackStack(null)
             ?.commit()
+    }
+
+    override fun error(message: String) {
+        refresh.isRefreshing = false
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     companion object {
